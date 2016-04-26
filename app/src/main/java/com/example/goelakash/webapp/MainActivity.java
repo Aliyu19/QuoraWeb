@@ -1,13 +1,19 @@
 package com.example.goelakash.webapp;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,14 +24,23 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final WebView mypage = (WebView) findViewById(R.id.webview);
+        mypage.setWebViewClient(new WebViewClient());
+        mypage.loadUrl("http://www.goelakash.wordpress.com");
+        mypage.canGoBack();
+        mypage.canGoForward();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        int fab_background = R.drawable.refresh;
+        fab.setImageResource(fab_background);
+        fab.setBackgroundTintList(ColorStateList.valueOf(0x222f2f2f));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                mypage.reload();
             }
         });
+
     }
 
     @Override
