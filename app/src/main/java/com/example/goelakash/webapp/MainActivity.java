@@ -26,21 +26,42 @@ public class MainActivity extends AppCompatActivity {
 
         final WebView mypage = (WebView) findViewById(R.id.webview);
         mypage.setWebViewClient(new WebViewClient());
-        mypage.loadUrl("http://www.goelakash.wordpress.com");
+        mypage.loadUrl("http://www.quora.com");
         mypage.canGoBack();
         mypage.canGoForward();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        int fab_background = R.drawable.refresh;
-        fab.setImageResource(fab_background);
-        fab.setBackgroundTintList(ColorStateList.valueOf(0x222f2f2f));
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton back_button = (FloatingActionButton) findViewById(R.id.back);
+        int back_icon = R.drawable.back;
+        back_button.setImageResource(back_icon);
+        back_button.setBackgroundTintList(ColorStateList.valueOf(0x222f2f2f));
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mypage.goBack();
+            }
+        });
+
+        FloatingActionButton refresh_button = (FloatingActionButton) findViewById(R.id.refresh);
+        int refresh_icon = R.drawable.refresh;
+        refresh_button.setImageResource(refresh_icon);
+        refresh_button.setBackgroundTintList(ColorStateList.valueOf(0x222f2f2f));
+        refresh_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mypage.reload();
             }
         });
 
+        FloatingActionButton forward_button = (FloatingActionButton) findViewById(R.id.forward);
+        int forward_icon = R.drawable.forward;
+        forward_button.setImageResource(forward_icon);
+        forward_button.setBackgroundTintList(ColorStateList.valueOf(0x222f2f2f));
+        forward_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mypage.goForward();
+            }
+        });
     }
 
     @Override
