@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -24,9 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
         final WebView mypage = (WebView) findViewById(R.id.webview);
         mypage.setWebViewClient(new WebViewClient());
-        mypage.loadUrl("http://www.quora.com");
+        mypage.loadUrl("https://www.quora.com");
         mypage.canGoBack();
         mypage.canGoForward();
+
+        WebSettings mypageSettings = mypage.getSettings();
+        mypageSettings.setJavaScriptEnabled(true);
 
         FloatingActionButton back_button = (FloatingActionButton) findViewById(R.id.back);
         int back_icon = R.drawable.back;
